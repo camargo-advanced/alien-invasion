@@ -26,7 +26,6 @@ def rodar_jogo():
 	while True:
 		# Tempo decorrido entre frame anterior e esse
 		tempo_decorrido = clock.tick(60) / 1000.0
-		print(tempo_decorrido)
 
 		for evento in pygame.event.get():
 			if evento.type == pygame.QUIT:
