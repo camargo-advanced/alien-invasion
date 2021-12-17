@@ -20,15 +20,17 @@ class Alien():
 		
 		self.x = float(self.retangulo.x)
 		self.y = float(self.retangulo.y)
+		self.v = 130 # velocidade em pixels por segundo 
 		
 		self.direcao = 1 # alien se movendo para direita
 		
-	def atualizar(self, direcao_frota):
+	def atualizar(self, tempo_decorrido, direcao_frota):
 		if self.direcao != direcao_frota:
 			self.y += 15
 			self.direcao = direcao_frota
 			
-		self.x += 0.1 * self.direcao * Alien.multiplicador_velocidade
+		distancia = tempo_decorrido * self.v # distancia percorrida em pixels
+		self.x += distancia * self.direcao * Alien.multiplicador_velocidade
 		self.retangulo.x = self.x
 		self.retangulo.y = self.y
 		

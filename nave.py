@@ -11,6 +11,7 @@ class Nave():
 		self.centerx = float(self.retangulo_janela.centerx) # posiciona centro
 		self.retangulo.centerx = self.centerx
 		self.retangulo.bottom = self.retangulo_janela.bottom # posiciona baixo
+		self.v = 350 # velocidade em pixels por segundo 
 		
 		self.movendo_direita = False
 		self.movendo_esquerda = False
@@ -19,12 +20,13 @@ class Nave():
 		self.centerx = float(self.retangulo_janela.centerx)
 		self.retangulo.centerx = self.centerx
 		
-	def atualizar(self):
+	def atualizar(self, tempo_decorrido):
+		distancia = tempo_decorrido * self.v # distancia percorrida em pixels 
 		if self.movendo_direita and self.retangulo.right < self.retangulo_janela.right:
-			self.centerx += 0.3
+			self.centerx += distancia
 			self.retangulo.centerx = self.centerx
 		if self.movendo_esquerda and self.retangulo.left > 0:
-			self.centerx -= 0.3
+			self.centerx -= distancia
 			self.retangulo.centerx = self.centerx
 	
 	def desenhar(self):

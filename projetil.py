@@ -19,9 +19,11 @@ class Projetil():
 		self.retangulo.top = nave.retangulo.top
 		
 		self.y = float(self.retangulo.y)
+		self.v = 300 # velocidade em pixels por segundo 
 		
-	def atualizar(self):
-		self.y -= 0.3 * Projetil.multiplicador_velocidade
+	def atualizar(self, tempo_decorrido):
+		distancia = tempo_decorrido * self.v # distancia percorrida em pixels
+		self.y -= distancia * Projetil.multiplicador_velocidade
 		self.retangulo.y = self.y
 		
 	def desenhar(self):

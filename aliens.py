@@ -21,7 +21,8 @@ def rodar_jogo():
 	estats = Estatisticas()
 	botao = Botao(janela, "Jogar")
 	placar = Placar(janela, estats)
-	
+	clock = pygame.time.Clock() # objeto relogio
+
 	while True:
 		for evento in pygame.event.get():
 			if evento.type == pygame.QUIT:
@@ -55,11 +56,15 @@ def rodar_jogo():
 		placar.atualizar()
 		
 		if estats.jogo_ativo:
+
+			# Tempo decorrido entre frame anterior e esse
+			tempo_decorrido = clock.tick(50) / 1000.0
+
 			#atualizando posicionamentos na janela
-			nave.atualizar()
+			nave.atualizar(tempo_decorrido)
 			
 			for projetil in projeteis:
-				projetil.atualizar()
+				projetil.atualizar(tempo_decorrido)
 				
 			for projetil in projeteis.copy():
 				if projetil.retangulo.bottom <= 0:
@@ -71,7 +76,7 @@ def rodar_jogo():
 					break
 			
 			for alien in aliens:
-				alien.atualizar(direcao_frota)
+				alien.atualizar(tempo_decorrido, direcao_frota)
 				
 			if len(aliens) == 0:
 				projeteis.clear()
