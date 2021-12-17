@@ -24,6 +24,10 @@ def rodar_jogo():
 	clock = pygame.time.Clock() # objeto relogio
 
 	while True:
+		# Tempo decorrido entre frame anterior e esse
+		tempo_decorrido = clock.tick(60) / 1000.0
+		print(tempo_decorrido)
+
 		for evento in pygame.event.get():
 			if evento.type == pygame.QUIT:
 				sys.exit()
@@ -56,10 +60,6 @@ def rodar_jogo():
 		placar.atualizar()
 		
 		if estats.jogo_ativo:
-
-			# Tempo decorrido entre frame anterior e esse
-			tempo_decorrido = clock.tick(50) / 1000.0
-
 			#atualizando posicionamentos na janela
 			nave.atualizar(tempo_decorrido)
 			
@@ -102,6 +102,7 @@ def rodar_jogo():
 				if estats.naves_disponiveis > 0:
 					estats.naves_disponiveis -= 1
 					sleep(1)
+					clock.tick()
 				else:
 					estats.naves_disponiveis = 0
 					estats.jogo_ativo = False
@@ -183,19 +184,3 @@ def obtem_mouse_colidiu_botao(mouse_x, mouse_y, botao):
 
 # programa principal
 rodar_jogo()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
