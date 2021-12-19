@@ -3,7 +3,7 @@ import pygame
 class Nave():
 	def __init__(self, janela):
 		self.janela = janela
-		self.imagem = pygame.image.load('imagens/nave.bmp')
+		self.imagem = pygame.image.load('imagens/nave.png').convert_alpha()
 		
 		self.retangulo = self.imagem.get_rect()
 		self.retangulo_janela = self.janela.get_rect()
